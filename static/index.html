@@ -1,0 +1,37 @@
+<html>
+    <script src="/static/jquery.js"></script>
+        <body>
+    <div id="pic1">
+        PIC 1
+    </div>
+
+    <div id="pic2">
+        PIC 2
+    </div>
+
+    <div id="pic3">
+        PIC 3
+    </div>
+
+    <script language="JavaScript">
+        x = $("div");
+        function ref() {
+            $.ajax({url: '/get', complete: function(r) {
+                    var id = r.responseText;
+                    $("div").each( function(i, d) {
+                        o = d;
+                        if (d.id !== "pic" + id) {
+                            $(d).hide();
+                            } else {
+                            $(d).show();
+                        }
+                    });
+
+                    setTimeout(ref, 500);
+            }});
+        }
+
+        setTimeout(ref, 0);
+    </script>
+</body>
+</html>
